@@ -1,2 +1,2 @@
-# Animial Sightings in Bulgaria SPA
+# Animal Sightings in Bulgaria SPA
 
