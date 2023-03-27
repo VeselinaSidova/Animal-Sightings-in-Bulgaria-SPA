@@ -1,3 +1,26 @@
-* {
-    background-color: #F2F2F2;
+.carousel-section {
+    height: 80vh;
 }
+
+img {
+    height: 80vh;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.first-image img {
+    object-position: middle;
+}
+
+.second-image img {
+    object-position: top;
+  }
+
+.third-image img {
+    object-position: bottom;
+}
+
+/* .text h3, p, div, span {
+    background-color: transparent;
+}
+ */

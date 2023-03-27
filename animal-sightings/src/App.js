@@ -8,15 +8,15 @@ import { Login } from './components/Login/Login';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main id="main-content">
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/login' element={<Login/>}/>
-        </Routes>
-      </main>
-    </div>
+      <div className="App">
+        <Header />
+        <main id="main-content">
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
+        </main>
+      </div>
   );
 }
 

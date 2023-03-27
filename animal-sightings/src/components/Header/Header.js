@@ -15,6 +15,7 @@ export const Header = () => {
                     <li><Link to={'/sightings'} className={styles['navbar-link']} >Animal Sightings</Link></li>
                     <li><Link to={'/my-animals'} className={styles['navbar-link']} >My Animal Records</Link></li>
                     <li><Link to={'/my-sightings'} className={styles['navbar-link']} >My Animal Sightings</Link></li>
+                    <li><Link to={'add-animal'} className={styles['navbar-link']} >Add Animal</Link></li>
                     <li><Link to={'/login'} className={styles['navbar-link']} >Login</Link></li>
                     <li><Link to={'/logout'} className={styles['navbar-link']} >Logout</Link></li>
                     <li><Link to={'/register'} className={styles['navbar-link']} >Register</Link></li>
