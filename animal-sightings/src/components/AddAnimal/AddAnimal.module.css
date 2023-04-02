@@ -1,0 +1,67 @@
+.add-animal-section {
+    background-color: #F2F2F2;
+}
+
+h1 {
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.add-animal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 50px 0;
+  }
+  
+  label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[type="text"],
+  select {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  
+  input[type="text"]:focus,
+  select:focus {
+    outline: none;
+    border-color: #9ED0A4;
+  }
+  
+  input[type="submit"] {
+    background-color: #9ED0A4;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #9ED0A4;
+  }
+
+  .animal-class, .food-preference {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .food-preference-options label:not(:first-child) {
+    margin: 0 10px;
+  }
+
+  .food-preference-options label:first-child {
+    margin-right: 10px;
+  }
+
+
+  

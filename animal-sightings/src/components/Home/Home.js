@@ -13,8 +13,8 @@ export const Home = () => {
                         alt="First slide"
                     />
                     <Carousel.Caption className={styles['text']}>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>Learn and contribute</h3>
+                        <p>Read general information interesting facts about animals in Bulgaria and add animals species to the list.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className={styles['second-image']}>
@@ -25,8 +25,8 @@ export const Home = () => {
                     />
 
                     <Carousel.Caption className={styles['text']}>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h3>Check</h3>
+                        <p>Check where you can sigth animals in Bulgaria.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className={styles['third-image']}>
@@ -37,10 +37,8 @@ export const Home = () => {
                     />
 
                     <Carousel.Caption className={styles['text']}>
-                        <h3>Third slide label</h3>
-                        <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
+                        <h3>Track</h3>
+                        <p>Track the animals your animal sightings.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
