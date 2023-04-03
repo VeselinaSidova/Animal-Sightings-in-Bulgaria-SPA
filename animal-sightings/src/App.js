@@ -20,13 +20,17 @@ function App() {
             })
     }, []);
 
+    const onAnimalAddSubmit = (data) => {
+        console.log(data);
+    };
+
     return (
         <div className="App">
             <Header />
             <main id="main-content">
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/add-animal' element={<AddAnimal />} />
+                    <Route path='/add-animal' element={<AddAnimal onAnimalAddSubmit={onAnimalAddSubmit}/>} />
                     <Route path='/login' element={<Login />} />
                 </Routes>
             </main>
