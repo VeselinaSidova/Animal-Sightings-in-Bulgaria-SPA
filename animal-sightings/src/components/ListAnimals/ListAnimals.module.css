@@ -1,0 +1,27 @@
+.animal-card {
+    margin: 0 50px;
+    width: 25vw;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.details-button {
+    border-radius: 8px;
+    background-color: #9ED0A4;
+    color: white;
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+}
+
+.details-button:hover {
+    color: black;
+}
+
+.animal-class {
+    text-transform: capitalize;
+}
+
+

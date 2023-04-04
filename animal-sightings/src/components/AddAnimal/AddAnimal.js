@@ -41,13 +41,13 @@ export const AddAnimal = ({
                 <div className={styles['animal-class']}>
                     <label htmlFor="animal-class">Class:</label>
                     <select value={values.animalClass} onChange={onChangeHandler} id="animalClass" name="animalClass">
-                        <option value="mammals">Mammals</option>
-                        <option value="birds">Birds</option>
-                        <option value="fish">Fish</option>
-                        <option value="reptiles">Reptiles</option>
-                        <option value="amphibians">Amphibians</option>
-                        <option value="insects">Insects</option>
-                        <option value="invertebrates">Invertebrates</option>
+                        <option value="Mammals">Mammals</option>
+                        <option value="Birds">Birds</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Reptiles">Reptiles</option>
+                        <option value="Amphibians">Amphibians</option>
+                        <option value="Insects">Insects</option>
+                        <option value="Invertebrates">Invertebrates</option>
                     </select>
                 </div>
 
@@ -63,12 +63,12 @@ export const AddAnimal = ({
                 <div className={styles['food-preference']}>
                     <label>Food preference:</label>
                     <div className={styles['food-preference-options']}>
-                        <label htmlFor="carnivores">Carnivores</label>
-                        <input type="radio" name="foodPreference" id="carnivores" value="carnivores" onChange={onChangeHandler} checked={values.foodPreference === 'carnivores'}/>
-                        <label htmlFor="herbivores">Herbivores</label>
-                        <input type="radio" name="foodPreference" id="herbivores" value="herbivores" onChange={onChangeHandler} checked={values.foodPreference === 'herbivores'}/>
-                        <label htmlFor="omnivores">Omnivores</label>
-                        <input type="radio" name="foodPreference" id="omnivores" value="omnivores" onChange={onChangeHandler} checked={values.foodPreference === 'omnivores'}/>
+                        <label htmlFor="carnivore">Carnivore</label>
+                        <input type="radio" name="foodPreference" id="carnivore" value="Carnivore" onChange={onChangeHandler} checked={values.foodPreference === 'Carnivore'}/>
+                        <label htmlFor="herbivore">Herbivore</label>
+                        <input type="radio" name="foodPreference" id="herbivore" value="Herbivore" onChange={onChangeHandler} checked={values.foodPreference === 'Herbivore'}/>
+                        <label htmlFor="omnivore">Omnivore</label>
+                        <input type="radio" name="foodPreference" id="omnivores" value="Omnivore" onChange={onChangeHandler} checked={values.foodPreference === 'Omnivore'}/>
                     </div>
                 </div>
 
