@@ -13,6 +13,8 @@ import { Login } from './components/Login/Login';
 import { AddAnimal } from './components/AddAnimal/AddAnimal';
 import { ListAnimals } from './components/ListAnimals/ListAnimals';
 import { AnimalDetails } from './components/AnimalDetails/AnimalDetails';
+import { Register } from './components/Register/Register';
+import { Logout } from './components/Logout/Logout';
 
 function App() {
     const navigate = useNavigate();
@@ -49,8 +51,36 @@ function App() {
         }
     };
 
+    
+    const onRegisterSubmit = async (values) => {
+        const { confirmPassword, ...registerData } = values;
+
+        if (confirmPassword !== registerData.password) {
+            return;
+        }
+
+        try {
+            const result = await authService.register(registerData);
+            
+            setAuth(result);
+
+            navigate('/animals');
+        } catch (error) {
+            console.log('There is a problem');
+        }
+    };
+
+    const onLogout = async () => {
+        await authService.logout();
+
+        setAuth({});
+    };
+
+
     const contextValues = {
         onLoginSubmit,
+        onRegisterSubmit,
+        onLogout,
         userId: auth._id,
         token: auth.accessToken,
         userEmail: auth.email,
@@ -67,7 +97,9 @@ function App() {
                         <Route path='/animals' element={<ListAnimals animals={animals} />} />
                         <Route path='/animals/:animalId' element={<AnimalDetails />} />
                         <Route path='/add-animal' element={<AddAnimal onAnimalAddSubmit={onAnimalAddSubmit} />} />
+                        <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />
+                        <Route path='/logout' element={<Logout />} />
                     </Routes>
                 </main>
             </div>

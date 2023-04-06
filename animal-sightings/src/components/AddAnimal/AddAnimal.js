@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useForm } from '../../hooks/useForm';
 
 import styles from './AddAnimal.module.css';
 
 export const AddAnimal = ({
     onAnimalAddSubmit,
 }) => {
-    const [values, setValues] = useState ({
+    const { values, changeHandler, onSubmit } = useForm ({
         animalName: '',
         latinName: '',
         animalClass: 'mammals',
@@ -16,31 +16,21 @@ export const AddAnimal = ({
         mass: '',
         imageUrl: '',
         description: '',
-    });
-
-    const onChangeHandler = (e) => {
-        setValues(state => ({...state, [e.target.name]: e.target.value}))
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        onAnimalAddSubmit(values);
-    };
+    }, onAnimalAddSubmit);
 
     return (
         <section className={styles['add-animal-section']} >
-            <form className={styles['add-animal']} onSubmit={onSubmit}>
+            <form className={styles['add-animal']} method="POST" onSubmit={onSubmit}>
                 <h1>Add Animal</h1>
                 <label htmlFor="animal-name">Name:</label>
-                <input value={values.animalName} onChange={onChangeHandler} type="text" id="animalName" name="animalName" placeholder="Brown Bear" />
+                <input value={values.animalName} onChange={changeHandler} type="text" id="animalName" name="animalName" placeholder="Brown Bear" />
 
                 <label htmlFor="latin-name">Latin name:</label>
-                <input value={values.latinName} onChange={onChangeHandler} type="text" id="latinName" name="latinName" placeholder="Ursus arctos" />
+                <input value={values.latinName} onChange={changeHandler} type="text" id="latinName" name="latinName" placeholder="Ursus arctos" />
 
                 <div className={styles['animal-class']}>
                     <label htmlFor="animal-class">Class:</label>
-                    <select value={values.animalClass} onChange={onChangeHandler} id="animalClass" name="animalClass">
+                    <select value={values.animalClass} onChange={changeHandler} id="animalClass" name="animalClass">
                         <option value="Mammals">Mammals</option>
                         <option value="Birds">Birds</option>
                         <option value="Fish">Fish</option>
@@ -52,34 +42,34 @@ export const AddAnimal = ({
                 </div>
 
                 <label htmlFor="habitat">Habitat:</label>
-                <input value={values.habitat} onChange={onChangeHandler} type="text" id="habitat" name="habitat" placeholder="Forest, Tundra" />
+                <input value={values.habitat} onChange={changeHandler} type="text" id="habitat" name="habitat" placeholder="Forest, Tundra" />
 
                 <label htmlFor="habitat-bg">Habitat in Bulgaria:</label>
-                <input value={values.habitatBg} onChange={onChangeHandler} type="text" id="habitatBg" name="habitatBg" placeholder="Forest" />
+                <input value={values.habitatBg} onChange={changeHandler} type="text" id="habitatBg" name="habitatBg" placeholder="Forest" />
 
                 <label htmlFor="location-bg">Locations in Bulgaria:</label>
-                <input value={values.locationBg} onChange={onChangeHandler} type="text" id="locationBg" name="locationBg" placeholder="Rila, Pirin, Balkan" />
+                <input value={values.locationBg} onChange={changeHandler} type="text" id="locationBg" name="locationBg" placeholder="Rila, Pirin, Balkan" />
 
                 <div className={styles['food-preference']}>
                     <label>Food preference:</label>
                     <div className={styles['food-preference-options']}>
                         <label htmlFor="carnivore">Carnivore</label>
-                        <input type="radio" name="foodPreference" id="carnivore" value="Carnivore" onChange={onChangeHandler} checked={values.foodPreference === 'Carnivore'}/>
+                        <input type="radio" name="foodPreference" id="carnivore" value="Carnivore" onChange={changeHandler} checked={values.foodPreference === 'Carnivore'}/>
                         <label htmlFor="herbivore">Herbivore</label>
-                        <input type="radio" name="foodPreference" id="herbivore" value="Herbivore" onChange={onChangeHandler} checked={values.foodPreference === 'Herbivore'}/>
+                        <input type="radio" name="foodPreference" id="herbivore" value="Herbivore" onChange={changeHandler} checked={values.foodPreference === 'Herbivore'}/>
                         <label htmlFor="omnivore">Omnivore</label>
-                        <input type="radio" name="foodPreference" id="omnivores" value="Omnivore" onChange={onChangeHandler} checked={values.foodPreference === 'Omnivore'}/>
+                        <input type="radio" name="foodPreference" id="omnivores" value="Omnivore" onChange={changeHandler} checked={values.foodPreference === 'Omnivore'}/>
                     </div>
                 </div>
 
                 <label htmlFor="mass">Mass:</label>
-                <input value={values.mass} onChange={onChangeHandler} type="text" id="mass" name="mass" placeholder="400-600 kg" />
+                <input value={values.mass} onChange={changeHandler} type="text" id="mass" name="mass" placeholder="400-600 kg" />
 
                 <label htmlFor="animal-img">Image:</label>
-                <input value={values.imageUrl} onChange={onChangeHandler} type="text" id="imageUrl" name="imageUrl" placeholder="Paste image URL" />
+                <input value={values.imageUrl} onChange={changeHandler} type="text" id="imageUrl" name="imageUrl" placeholder="Paste image URL" />
 
                 <label htmlFor="description">Description:</label>
-                <textarea value={values.description} onChange={onChangeHandler} id="description" name="description" cols="40" rows="10" placeholder="The brown bear is..."></textarea>
+                <textarea value={values.description} onChange={changeHandler} id="description" name="description" cols="40" rows="10" placeholder="The brown bear is..."></textarea>
 
                 <input className={styles['btn-submit']} type="submit" value="Add Animal" />
             </form>

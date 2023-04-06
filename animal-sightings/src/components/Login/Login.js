@@ -33,7 +33,7 @@ export const Login = () => {
                 <Form.Group className={styles['login-button']}>
                 <input type="submit" className="btn submit" value="Login" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
+                <Form.Group className="mb-3" controlId="formRegisterRedirect">
                     <p className={styles['register-section']}>
                         <span>You don't have a profile? <Link to="/register" className={styles['register']}>Register</Link></span>
                     </p>
