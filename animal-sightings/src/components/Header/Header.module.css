@@ -4,6 +4,7 @@ background-color: #F2F2F2;
 
 .header-section {
   background-color: #F2F2F2;
+  border-bottom: 2px solid #9ED0A4;
 }
 
 .navigation {
@@ -31,6 +32,13 @@ background-color: #F2F2F2;
 
 .navbar-brand:hover{
   color: black;
+}
+
+.auth-section {
+  display: flex;
+  margin-left: auto;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .black {

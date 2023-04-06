@@ -1,0 +1,55 @@
+.animal-section {
+    padding: 20px;
+}
+
+.animal-card {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.close-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    margin: 30px;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    padding: 10px 0 20px 0;
+    border-bottom: 2px solid #9ED0A4;
+}
+
+.animal-class {
+    text-transform: capitalize;
+}
+
+.buttons-section {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-top: 2px solid #9ED0A4;
+}
+
+.sightings-button {
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #9ED0A4;
+    color: white;
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+}
+
+.sightings-button:hover {
+    color: black;
+}

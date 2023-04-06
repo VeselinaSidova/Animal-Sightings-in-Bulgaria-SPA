@@ -1,17 +1,37 @@
+.animal-catalogue {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
 .animal-card {
-    margin: 0 50px;
-    width: 25vw;
+    width: 20vw;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
 }
 
 .card-title {
     text-align: center;
 }
 
+.animal-class {
+    text-transform: capitalize;
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+}
+
 .details-button {
     border-radius: 8px;
     background-color: #9ED0A4;
     color: white;
-    text-align: center;
     padding: 12px 14px;
     text-decoration: none;
 }
@@ -19,9 +39,3 @@
 .details-button:hover {
     color: black;
 }
-
-.animal-class {
-    text-transform: capitalize;
-}
-
-
