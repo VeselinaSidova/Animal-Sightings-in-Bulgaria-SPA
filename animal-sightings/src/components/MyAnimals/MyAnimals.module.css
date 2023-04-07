@@ -1,0 +1,31 @@
+.myAnimals-title {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.myAnimals-catalogue {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.no-animals-added {
+    text-align: center;
+}
+
+.add-animal-link {
+    margin-top: 30px;
+}
+
+.add-animal {
+    background-color: #9ED0A4;
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.add-animal:hover {
+    color: black;
+}

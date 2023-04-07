@@ -20,16 +20,18 @@ export const animalServiceFactory = (token) => {
     
     const create = async (animalData) => {
         const result = await request.post(baseUrl, animalData);
-    
+        
         return result;
     };
 
+    const deleteAnimal = (animalId) => request.delete(`${baseUrl}/${animalId}`);
+
+    //TODO delete from state
+    
     return {
         getAll,
         getOne,
-        create, 
+        create,
+        delete: deleteAnimal,
     };
 };
-
-
-

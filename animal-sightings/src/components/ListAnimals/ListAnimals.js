@@ -1,27 +1,18 @@
-import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-
+import { AnimalItem } from './AnimalItem/AnimalItem';
 import styles from './ListAnimals.module.css';
-
 
 export const ListAnimals = ({
     animals,
 }) => {
     return (
+        <div className={styles['catalogue-page']}>
+            <h1 className={styles['animals-title']}>Animals in Bulgaria</h1>
         <section className={styles['animal-catalogue']}>
-            {animals.map((animal) => (
-            <Card key={animal._id} className={styles['animal-card']}>
-                <Card.Img className={styles['card-image']} variant="top" src={animal.imageUrl} />
-                <Card.Body className={styles['card-body']}>
-                    <Card.Title className={styles['card-title']}>{animal.animalName} <em>({animal.latinName})</em></Card.Title>
-                    <Card.Text className={styles['animal-class']}>Class: {animal.animalClass}</Card.Text>
-                    <Card.Text>Habitat: {animal.habitatBg}</Card.Text>
-                    <Card.Text>Locations: {animal.locationBg}</Card.Text>
-                    <Card.Text>Food preference: {animal.foodPreference}</Card.Text>
-                    <div className={styles['button-section']}><Link to={`/animals/${animal._id}`} className={styles['details-button']}>Details</Link></div>
-                </Card.Body>
-            </Card>
-            ))}
+            {animals.map((animal) => <AnimalItem key={animal._id} {...animal}/>)}
+            {animals.length === 0 && (
+                <h3 className={styles['no-articles']}>No animals added yet</h3>
+            )}     
         </section>
+        </div>
     );
-} 
+};

@@ -28,6 +28,11 @@ export const request = async (method, token, url, data) => {
 
     const result = await (await response).json();
 
+    if (response.status === 404) {
+        console.log("No data on server");
+        return {};
+    }
+
     if (!response.ok) {
         throw result;
     }

@@ -15,6 +15,7 @@ import { ListAnimals } from './components/ListAnimals/ListAnimals';
 import { AnimalDetails } from './components/AnimalDetails/AnimalDetails';
 import { Register } from './components/Register/Register';
 import { Logout } from './components/Logout/Logout';
+import { MyAnimals } from './components/MyAnimals/MyAnimals';
 
 function App() {
     const navigate = useNavigate();
@@ -26,12 +27,12 @@ function App() {
     useEffect(() => {
         animalService.getAll()
             .then(result => {
-                setAnimals(result)
-            })
+                setAnimals(result);
+            });
     }, []);
 
     const onAnimalAddSubmit = async (data) => {
-        const newAnimal = await animalServiceFactory.create(data);
+        const newAnimal = await animalService.create(data);
 
         setAnimals(state => [...state, newAnimal]);
 
@@ -72,7 +73,6 @@ function App() {
 
     const onLogout = async () => {
         await authService.logout();
-
         setAuth({});
     };
 
@@ -96,6 +96,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/animals' element={<ListAnimals animals={animals} />} />
                         <Route path='/animals/:animalId' element={<AnimalDetails />} />
+                        <Route path='/my-animals' element={<MyAnimals animals={animals}/>} />
                         <Route path='/add-animal' element={<AddAnimal onAnimalAddSubmit={onAnimalAddSubmit} />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />
