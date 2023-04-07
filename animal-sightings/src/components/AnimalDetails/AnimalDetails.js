@@ -55,7 +55,7 @@ export const AnimalDetails = () => {
                         <Link to={`/animals/sightings`} className={styles['sightings-button']}>View on Map</Link>
                         {animal._ownerId === userId &&
                             <div className={styles['owner-buttons-section']}>
-                                <Link to={`/edit/${animal._id}`} className={styles['sightings-button']}>Edit</Link>
+                                <Link to={`/animals/${animal._id}/edit`} className={styles['sightings-button']}>Edit</Link>
                                 <button className={styles['delete-button']} onClick={onDeleteClick}>Delete</button>
                             </div>
                         }

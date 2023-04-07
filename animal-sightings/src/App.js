@@ -16,6 +16,7 @@ import { AnimalDetails } from './components/AnimalDetails/AnimalDetails';
 import { Register } from './components/Register/Register';
 import { Logout } from './components/Logout/Logout';
 import { MyAnimals } from './components/MyAnimals/MyAnimals';
+import { EditAnimal } from './components/EditAnimal/EditAnimal';
 
 function App() {
     const navigate = useNavigate();
@@ -76,6 +77,13 @@ function App() {
         setAuth({});
     };
 
+    const onAnimalEditSubmit = async (values) => {
+        const result = await animalService.edit(values._id, values);
+
+        setAnimals(state => state.map(x => x._id === values._id ? result : x));
+
+        navigate(`animals/${values._id}`)
+    }
 
     const contextValues = {
         onLoginSubmit,
@@ -96,6 +104,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/animals' element={<ListAnimals animals={animals} />} />
                         <Route path='/animals/:animalId' element={<AnimalDetails />} />
+                        <Route path='/animals/:animalId/edit' element={<EditAnimal onAnimalEditSubmit={onAnimalEditSubmit}/>} />
                         <Route path='/my-animals' element={<MyAnimals animals={animals}/>} />
                         <Route path='/add-animal' element={<AddAnimal onAnimalAddSubmit={onAnimalAddSubmit} />} />
                         <Route path='/register' element={<Register />} />
