@@ -7,7 +7,7 @@ export const Home = () => {
         <div>
             <header>
                 <h1>Animal Sighthings Bulgaria</h1>
-                <h2>Your Ultimate Guide to Animal Sightings in Bulgaria!</h2>
+                <h2>Your Ultimate Guide to tracking and learning about Bulgarian fauna!</h2>
             </header>
             <main>
                 <section className={styles['carousel-section']}>
@@ -49,9 +49,9 @@ export const Home = () => {
                         </Carousel.Item>
                     </Carousel>
                 </section>
-                <div className="container">
+                {/* <div className="container">
                     <p>Discover the enchanting world of Bulgaria's diverse wildlife with Wild Bulgaria, your one-stop destination to explore the unique animals found across the country. Experience the thrill of tracking elusive species in their natural habitats, and contribute to conservation efforts by sharing your own sightings. From the majestic brown bears of the Rhodopes to the playful dolphins of the Black Sea, embark on an unforgettable adventure that will leave you in awe of Bulgaria's remarkable fauna.</p>
-                </div>
+                </div> */}
             </main>
         </div>
 

@@ -31,7 +31,7 @@ export const EditAnimal = ({
             .then(result => {
                 changeValues(result);
             });
-    }, [animalId]);
+    }, [animalId, animalSevice, changeValues]);
 
     return (
         <section className={styles['edit-animal-section']} >

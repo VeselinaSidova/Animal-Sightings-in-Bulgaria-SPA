@@ -12,7 +12,7 @@ import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
 
 export const AnimalDetails = () => {
-    const { userId } = useContext(AuthContext);
+    const { userId, isAuthenticated } = useContext(AuthContext);
     const { animalId } = useParams();
     const [animal, setAnimal] = useState({});
     const animalService = useService(animalServiceFactory);
@@ -23,7 +23,7 @@ export const AnimalDetails = () => {
             .then(result => {
                 setAnimal(result);
             })
-    }, [animalId]);
+    }, [animalId, animalService]);
 
     const onDeleteClick = async () => {
         await animalService.delete(animal._id);
@@ -37,7 +37,7 @@ export const AnimalDetails = () => {
     return (
         <section className={styles['animal-section']}>
             <Card key={animal._id} className={styles['animal-card']}>
-                <CloseButton variant="white" className={styles['close-button']} onClick={onCloseClick}/>
+                <CloseButton variant="white" className={styles['close-button']} onClick={onCloseClick} />
                 <Card.Img className={styles['card-image']} variant="top" src={animal.imageUrl} />
                 <Card.Body className={styles['card-body']}>
                     <Card.Title className={styles['card-title']}>{animal.animalName} <em>({animal.latinName})</em></Card.Title>
@@ -51,7 +51,9 @@ export const AnimalDetails = () => {
                         <ListGroup.Item>Description: <p className={styles['animal-description']}>{animal.description}</p></ListGroup.Item>
                     </ListGroup>
                     <div className={styles['buttons-section']}>
-                        <Link to={`/animals/my-sightings`} className={styles['sightings-button']}>Add to My Sightings</Link>
+                        {isAuthenticated && (
+                            <Link to={`/animals/my-sightings`} className={styles['sightings-button']}>Add to My Sightings</Link>
+                        )}
                         <Link to={`/animals/sightings`} className={styles['sightings-button']}>View on Map</Link>
                         {animal._ownerId === userId &&
                             <div className={styles['owner-buttons-section']}>

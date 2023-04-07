@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { animalServiceFactory } from './services/animalService';
-import { authServiceFactory } from './services/authService';
-import { AuthContext } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home/Home";
@@ -21,16 +20,14 @@ import { EditAnimal } from './components/EditAnimal/EditAnimal';
 function App() {
     const navigate = useNavigate();
     const [animals, setAnimals] = useState([]);
-    const [auth, setAuth] = useState({});
-    const animalService = animalServiceFactory(auth.accessToken);
-    const authService = authServiceFactory(auth.accessToken);
+    const animalService = animalServiceFactory(); // TODO auth.accessToken
 
     useEffect(() => {
         animalService.getAll()
             .then(result => {
                 setAnimals(result);
             });
-    }, []);
+    }, [animalService]);
 
     const onAnimalAddSubmit = async (data) => {
         const newAnimal = await animalService.create(data);
@@ -38,43 +35,6 @@ function App() {
         setAnimals(state => [...state, newAnimal]);
 
         navigate('/animals');
-    };
-
-    const onLoginSubmit = async (data) => {
-
-        try {
-            const result = await authService.login(data);
-            setAuth(result);
-
-            navigate('/animals');
-
-        } catch(error) {
-            console.log('There is a problem'); //TODO - notification!
-        }
-    };
-
-    
-    const onRegisterSubmit = async (values) => {
-        const { confirmPassword, ...registerData } = values;
-
-        if (confirmPassword !== registerData.password) {
-            return;
-        }
-
-        try {
-            const result = await authService.register(registerData);
-            
-            setAuth(result);
-
-            navigate('/animals');
-        } catch (error) {
-            console.log('There is a problem');
-        }
-    };
-
-    const onLogout = async () => {
-        await authService.logout();
-        setAuth({});
     };
 
     const onAnimalEditSubmit = async (values) => {
@@ -85,18 +45,8 @@ function App() {
         navigate(`animals/${values._id}`)
     }
 
-    const contextValues = {
-        onLoginSubmit,
-        onRegisterSubmit,
-        onLogout,
-        userId: auth._id,
-        token: auth.accessToken,
-        userEmail: auth.email,
-        isAuthenticated: !!auth.accessToken,
-    };
-
     return (
-        <AuthContext.Provider value={contextValues}>
+        <AuthProvider>
             <div className="App">
                 <Header />
                 <main id="main-content">
@@ -113,7 +63,7 @@ function App() {
                     </Routes>
                 </main>
             </div>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 
