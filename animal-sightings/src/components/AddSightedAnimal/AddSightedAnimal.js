@@ -1,6 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import styles from './AddSightedAnimal.module.css';
 
@@ -8,12 +10,20 @@ export const AddSightedAnimal = ({
     onSightingAddSubmit,
 }) => {
     const { animalId } = useParams();
-    const { values, changeHandler, onSubmit } = useForm ({
+    const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
+    const { values, changeHandler, onSubmit } = useForm({
         animalId,
         location: '',
         date: '',
         note: '',
     }, onSightingAddSubmit);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, []);
 
     return (
         <div className={styles['add-sighting']}>

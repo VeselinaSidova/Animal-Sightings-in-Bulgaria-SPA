@@ -1,11 +1,17 @@
+import { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useForm } from '../../hooks/useForm';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import styles from './AddAnimal.module.css';
 
 export const AddAnimal = ({
     onAnimalAddSubmit,
 }) => {
-    const { values, changeHandler, onSubmit } = useForm ({
+    const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
+    const { values, changeHandler, onSubmit } = useForm({
         animalName: '',
         latinName: '',
         animalClass: 'mammals',
@@ -17,6 +23,12 @@ export const AddAnimal = ({
         imageUrl: '',
         description: '',
     }, onAnimalAddSubmit);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, []);
 
     return (
         <section className={styles['add-animal-section']} >
@@ -54,11 +66,11 @@ export const AddAnimal = ({
                     <label>Food preference:</label>
                     <div className={styles['food-preference-options']}>
                         <label htmlFor="carnivore">Carnivore</label>
-                        <input type="radio" name="foodPreference" id="carnivore" value="Carnivore" onChange={changeHandler} checked={values.foodPreference === 'Carnivore'}/>
+                        <input type="radio" name="foodPreference" id="carnivore" value="Carnivore" onChange={changeHandler} checked={values.foodPreference === 'Carnivore'} />
                         <label htmlFor="herbivore">Herbivore</label>
-                        <input type="radio" name="foodPreference" id="herbivore" value="Herbivore" onChange={changeHandler} checked={values.foodPreference === 'Herbivore'}/>
+                        <input type="radio" name="foodPreference" id="herbivore" value="Herbivore" onChange={changeHandler} checked={values.foodPreference === 'Herbivore'} />
                         <label htmlFor="omnivore">Omnivore</label>
-                        <input type="radio" name="foodPreference" id="omnivores" value="Omnivore" onChange={changeHandler} checked={values.foodPreference === 'Omnivore'}/>
+                        <input type="radio" name="foodPreference" id="omnivores" value="Omnivore" onChange={changeHandler} checked={values.foodPreference === 'Omnivore'} />
                     </div>
                 </div>
 

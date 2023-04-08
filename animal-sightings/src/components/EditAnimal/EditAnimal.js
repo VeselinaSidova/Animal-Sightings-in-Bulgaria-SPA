@@ -1,8 +1,9 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useContext } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useForm } from "../../hooks/useForm";
 import { useService } from "../../hooks/useService";
+import { AuthContext } from '../../contexts/AuthContext';
 import { animalServiceFactory } from "../../services/animalService";
 
 import styles from './EditAnimal.module.css';
@@ -11,6 +12,8 @@ export const EditAnimal = ({
     onAnimalEditSubmit,
 }) => {
     const { animalId } = useParams();
+    const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
     const animalSevice = useService(animalServiceFactory);
     const { values, changeHandler, onSubmit, changeValues } = useForm({
         _id: '',
@@ -25,6 +28,12 @@ export const EditAnimal = ({
         imageUrl: '',
         description: '',
     }, onAnimalEditSubmit);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, []);
 
     useEffect(() =>{
         animalSevice.getOne(animalId)

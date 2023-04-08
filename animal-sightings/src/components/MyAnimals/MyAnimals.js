@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { AnimalItem } from '../ListAnimals/AnimalItem/AnimalItem';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -10,6 +10,15 @@ export const MyAnimals = ({
     animals,
 }) => {
     const { userId } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, []);
+
     return (
         <div className={styles['myAnimals-catalogue-page']}>
             <h1 className={styles['myAnimals-title']}>My added animals</h1>

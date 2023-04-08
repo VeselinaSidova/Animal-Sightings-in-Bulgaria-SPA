@@ -1,10 +1,11 @@
-import Form from 'react-bootstrap/Form';
-import styles from './Login.module.css';
-
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../../contexts/AuthContext';
 import { useForm } from '../../hooks/useForm';
+
+import Form from 'react-bootstrap/Form';
+import styles from './Login.module.css';
 
 const LoginFormKeys = {
     Email: 'email',

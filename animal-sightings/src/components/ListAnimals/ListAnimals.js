@@ -1,4 +1,5 @@
 import { AnimalItem } from './AnimalItem/AnimalItem';
+
 import styles from './ListAnimals.module.css';
 
 export const ListAnimals = ({
