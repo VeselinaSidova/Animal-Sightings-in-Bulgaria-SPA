@@ -32,6 +32,10 @@
     gap:10px;
 }
 
+.delete-button {
+    border: 0;
+}
+
 .details-button, .edit-button, .delete-button {
     border-radius: 8px;
     background-color: #9ED0A4;

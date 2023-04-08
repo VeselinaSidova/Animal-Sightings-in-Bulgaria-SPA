@@ -8,6 +8,7 @@ import { SightingProvider } from './contexts/SightingContext';
 
 import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home/Home";
+import { Footer } from './components/Footer/Footer';
 import { Login } from './components/Login/Login';
 import { AddAnimal } from './components/AddAnimal/AddAnimal';
 import { ListAnimals } from './components/ListAnimals/ListAnimals';
@@ -18,7 +19,7 @@ import { MyAnimals } from './components/MyAnimals/MyAnimals';
 import { EditAnimal } from './components/EditAnimal/EditAnimal';
 import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal';
 import { MySightings } from './components/MySightings/MySightings';
-import { Footer } from './components/Footer/Footer';
+import { EditSightedAnimal } from './components/EditSightedAnimal/EditSightedAnimal';
 
 function App() {
     return (
@@ -34,6 +35,7 @@ function App() {
                                 <Route path='/animals/:animalId' element={<AnimalDetails />} />
                                 <Route path='/animals/:animalId/edit' element={<EditAnimal />} />
                                 <Route path='/my-sightings' element={<MySightings />} />
+                                <Route path='/my-sightings/:sightingId/edit' element={<EditSightedAnimal />} />
                                 <Route path='/my-animals' element={<MyAnimals />} />
                                 <Route path='/add-animal' element={<AddAnimal />} />
                                 <Route path='/add-sighting/:animalId' element={<AddSightedAnimal />} />

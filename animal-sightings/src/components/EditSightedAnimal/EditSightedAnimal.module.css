@@ -1,0 +1,48 @@
+.add-sighting {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.add-sightings-form {
+    width: 25rem;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[type="text"],
+  select {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  
+  input[type="text"]:focus,
+  select:focus {
+    outline: none;
+    border-color: #9ED0A4;
+  }
+  
+  .btn-submit {
+    font-weight: 700;
+    background-color: #9ED0A4;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .btn-submit:hover {
+    background-color: #9ED0A4;
+  }

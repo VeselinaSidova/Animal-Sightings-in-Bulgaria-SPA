@@ -2,7 +2,7 @@ import { requestFactory } from './requester'
 
 const baseUrl = 'http://localhost:3030/data/sightings';
 
-export const sighringsServiceFactory = (token) => {
+export const sightingsServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async (userId) => {
@@ -14,15 +14,26 @@ export const sighringsServiceFactory = (token) => {
         return sightings;
     };
 
+    const getOne = async (sightingId) => {
+        const result = await request.get(`${baseUrl}/${sightingId}`);
+    
+        return result;
+    };
+
     const add = async (sightingData) => {
         const result = await request.post(baseUrl, sightingData);
         return result;
     };
 
-    // TODO add edit and delete
+    const edit = (sightingId, data) => request.put(`${baseUrl}/${sightingId}`, data);
+
+    const deleteSighting = (sightingId) => request.delete(`${baseUrl}/${sightingId}`);
     
     return {
         getAll,
+        getOne,
         add,
+        edit,
+        delete: deleteSighting,
     };
 }

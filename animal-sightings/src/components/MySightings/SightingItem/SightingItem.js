@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { animalServiceFactory } from '../../../services/animalService';
+import { sightingsServiceFactory } from '../../../services/sightingsService';
 import { useService } from '../../../hooks/useService';
+import { useSightingContext } from '../../../contexts/SightingContext'
 
 import Card from 'react-bootstrap/Card';
 import styles from './SightedItem.module.css';
@@ -16,6 +18,9 @@ export const SightedItem = ({
 }) => {
     const [animal, setAnimal] = useState({});
     const animalService = useService(animalServiceFactory);
+    const navigate = useNavigate();
+    const sightingsService = sightingsServiceFactory();
+    const { deleteSighting } = useSightingContext();
 
     useEffect(() => {
         animalService.getOne(animalId)
@@ -23,6 +28,14 @@ export const SightedItem = ({
                 setAnimal(result);
             })
     }, [animalId]);
+    
+    const onDeleteClick = async () => {
+        await sightingsService.delete(_id);
+
+        deleteSighting(_id);
+
+        navigate('/animals');
+    };
 
     return (
         <Card key={_id} className={styles['animal-card']}>
@@ -34,8 +47,8 @@ export const SightedItem = ({
                 <Card.Text >Note: {note}</Card.Text>
                 <div className={styles['button-section']}>
                     <Link to={`/animals/${animal._id}`} className={styles['details-button']}>Details</Link>
-                    <Link to={`/`} className={styles['edit-button']}>Edit</Link>
-                    <Link to={`/`} className={styles['delete-button']}>Delete</Link>
+                    <Link to={`/my-sightings/${_id}/edit`} className={styles['edit-button']}>Edit</Link>
+                    <button className={styles['delete-button']} onClick={onDeleteClick}>Delete</button>
                 </div>
             </Card.Body>
         </Card>

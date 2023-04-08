@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { sighringsServiceFactory } from '../services/sightingsService';
+import { sightingsServiceFactory } from '../services/sightingsService';
 
 export const SightingContext = createContext();
 
@@ -10,7 +10,7 @@ export const SightingProvider = ({
 }) => {
     const navigate = useNavigate();
     const [sigtings, setSigtings] = useState([]);
-    const sightingsService = sighringsServiceFactory();
+    const sightingsService = sightingsServiceFactory();
 
     useEffect(() => {
         sightingsService.getAll()
@@ -27,9 +27,23 @@ export const SightingProvider = ({
         navigate('/my-sightings');
     };    
 
+    const onSightingEditSubmit = async (values) => {
+        const result = await sightingsService.edit(values._id, values);
+
+        setSigtings(state => state.map(x => x._id === values._id ? result : x));
+
+        navigate(`/my-sightings`);
+    }
+
+    const deleteSighting = (sightingId) => {
+        setSigtings(state => state.filter(sighting => sighting._id !== sightingId));
+    };
+
     const contextValues = {
         sigtings,
         onSightingAddSubmit,
+        onSightingEditSubmit,
+        deleteSighting,
     };
 
     return (

@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { sighringsServiceFactory } from '../../services/sightingsService';
+import { sightingsServiceFactory } from '../../services/sightingsService';
 import { SightedItem } from './SightingItem/SightingItem';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -12,7 +12,7 @@ export const MySightings = () => {
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);
     const [mySightings, setMySightings] = useState([]);
-    const sightingsService = sighringsServiceFactory();
+    const sightingsService = sightingsServiceFactory();
 
     useEffect(() => {
         if (!isAuthenticated) {
