@@ -21,7 +21,7 @@ export const AddSightedAnimal = ({
             <form className={styles['add-sightings-form']} method="POST" onSubmit={onSubmit}>
                 <input value={values.location} onChange={changeHandler} type="text" name="location" placeholder="Rila" />
                 <input value={values.date} onChange={changeHandler} type="date" name="date" />
-                <textarea value={values.note} onChange={changeHandler} name="note" placeholder="Add note" ></textarea>
+                <textarea maxLength={120} value={values.note} onChange={changeHandler} name="note" placeholder="Add note" ></textarea>
                 <input className={styles['btn-submit']} type="submit" value="Add" />
             </form>
         </div>

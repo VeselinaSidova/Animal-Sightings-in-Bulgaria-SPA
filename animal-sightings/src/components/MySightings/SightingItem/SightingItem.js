@@ -32,8 +32,12 @@ export const SightedItem = ({
             <Card.Title className={styles['card-title']}>Animal: {animal.animalName}</Card.Title>
             <Card.Text >Location: {location}</Card.Text>
             <Card.Text >Date: {date}</Card.Text>
-            <Card.Text>Note: {note}</Card.Text>
-            <div className={styles['button-section']}><Link to={`/animals/${animal._id}`} className={styles['details-button']}>Details</Link></div>
+            <Card.Text >Note: {note}</Card.Text>
+            <div className={styles['button-section']}>
+                <Link to={`/animals/${animal._id}`} className={styles['details-button']}>Details</Link>
+                <Link to={`/`} className={styles['edit-button']}>Edit</Link>
+                <Link to={`/`} className={styles['delete-button']}>Delete</Link>
+            </div>
         </Card.Body>
     </Card>
     );

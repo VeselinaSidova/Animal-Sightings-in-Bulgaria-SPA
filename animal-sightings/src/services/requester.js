@@ -1,4 +1,4 @@
-export const requester = async (method, token, url, data) => {
+const requester = async (method, token, url, data) => {
     const options = {};
 
     if (method !== 'GET') {
@@ -17,7 +17,7 @@ export const requester = async (method, token, url, data) => {
         options.headers = {
             ...options.headers,
             'X-Authorization': token,
-        }
+        };
     }
 
     const response = await fetch(url, options);
@@ -26,8 +26,7 @@ export const requester = async (method, token, url, data) => {
         return {};
     }
 
-    const result = await (await response).json();
-
+    const result = await response.json();
 
     if (!response.ok) {
         throw result;
@@ -39,12 +38,13 @@ export const requester = async (method, token, url, data) => {
 export const requestFactory = (token) => {
     if (!token) {
         const serializedAuth = localStorage.getItem('auth');
-        
+
         if (serializedAuth) {
             const auth = JSON.parse(serializedAuth);
             token = auth.accessToken;
         }
     }
+
     return {
         get: requester.bind(null, 'GET', token),
         post: requester.bind(null, 'POST', token),

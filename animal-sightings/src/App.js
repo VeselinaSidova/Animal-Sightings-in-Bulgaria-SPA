@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { animalServiceFactory } from './services/animalService';
-import * as sightingsService from './services/sightingsService';
+import { sighringsServiceFactory } from './services/sightingsService';
 import { AuthProvider } from './contexts/AuthContext';
 
 import { Header } from "./components/Header/Header";
@@ -23,7 +23,8 @@ import { MySightings } from './components/MySightings/MySightings';
 function App() {
     const navigate = useNavigate();
     const [animals, setAnimals] = useState([]);
-    const animalService = animalServiceFactory(); // TODO auth.accessToken
+    const animalService = animalServiceFactory(); 
+    const sightingsService = sighringsServiceFactory(); 
 
     useEffect(() => {
         animalService.getAll()

@@ -1,14 +1,18 @@
+.mySightings-catalogue-page {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+}
+
 .mySightings-title {
     margin-top: 30px;
-    text-align: center;
 }
 
 .mySightings-catalogue {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 50px;
-    gap: 20px;
+    justify-content: space-evenly;
+    gap: 30px;
 }
 
 .no-animals-added {
