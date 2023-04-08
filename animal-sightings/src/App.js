@@ -18,6 +18,7 @@ import { MyAnimals } from './components/MyAnimals/MyAnimals';
 import { EditAnimal } from './components/EditAnimal/EditAnimal';
 import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal';
 import { MySightings } from './components/MySightings/MySightings';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                                 <Route path='/logout' element={<Logout />} />
                             </Routes>
                         </main>
+                        <Footer />
                     </div>
                 </SightingProvider>
             </AnimalProvider>

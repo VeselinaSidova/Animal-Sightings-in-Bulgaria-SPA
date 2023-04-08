@@ -1,0 +1,9 @@
+.footer {
+    margin-top: auto;
+    border-top: 2px solid #9ED0A4;
+}
+
+.footer p {
+    text-align: center;
+    padding-top: 10px;
+}

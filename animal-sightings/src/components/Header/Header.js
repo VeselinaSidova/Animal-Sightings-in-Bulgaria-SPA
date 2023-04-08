@@ -8,7 +8,7 @@ import styles from './Header.module.css';
 export const Header = () => {
     const { isAuthenticated } = useContext(AuthContext);
     return (
-        <section className={styles['header-section']}>
+        <header className={styles['header-section']}>
             <nav className={styles['navigation']}>
                 <div className={styles['navbar-header']}>
                     <Link className={styles['navbar-brand']} to={'/'}><span className={styles['black']}>Animal Sightings</span> Bulgaria</Link>
@@ -33,6 +33,6 @@ export const Header = () => {
                     )}
                 </ul>
             </nav>
-        </section>
+        </header>
     );
 };

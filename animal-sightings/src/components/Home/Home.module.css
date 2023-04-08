@@ -1,33 +1,27 @@
-header {
+.home-header {
     background-color: #9ED0A4;
     color: black;
     padding: 20px;
     text-align: center;
   }
   
-  h1 {
+  .home-header h1 {
     font-size: 3rem;
     margin-bottom: 20px;
   }
   
-  h2 {
+  .home-header h2 {
     font-size: 2rem;
   }
-  
-  main {
-    background-color: #F2F2F2;
-  }
-  
   .container {
     margin: 0 auto;
   }
   
-  header p {
+  .home-header p {
     font-size: 1.2rem;
     line-height: 1.5;
     color: #363636;
   }
-
 
   .carousel-section {
     height: 80vh;

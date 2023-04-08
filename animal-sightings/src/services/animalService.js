@@ -27,8 +27,6 @@ export const animalServiceFactory = (token) => {
     const edit = (animalId, data) => request.put(`${baseUrl}/${animalId}`, data);
 
     const deleteAnimal = (animalId) => request.delete(`${baseUrl}/${animalId}`);
-
-    // TODO delete from state
     
     return {
         getAll,
