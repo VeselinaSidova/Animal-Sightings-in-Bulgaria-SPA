@@ -1,4 +1,4 @@
-.add-sighting {
+.edit-sighting {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     gap: 20px;
 }
 
-.add-sightings-form {
+.edit-sightings-form {
     width: 25rem;
     display: flex;
     gap: 20px;
@@ -45,4 +45,9 @@ label {
   
   .btn-submit:hover {
     background-color: #9ED0A4;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: -1rem;
   }
