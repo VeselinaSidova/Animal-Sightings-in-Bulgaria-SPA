@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-export const useForm = (initialValues, onSubmitHandler) => {
+export const useForm = (initialValues, onSubmitHandler, validate) => {
     const [values, setValues] = useState(initialValues);
+    const [errors, setErrors] = useState({});
 
     const changeHandler = (e) => {
         setValues(state => ({...state, [e.target.name]: e.target.value}));
@@ -9,19 +10,23 @@ export const useForm = (initialValues, onSubmitHandler) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        onSubmitHandler(values);
-        setValues(initialValues);
+        const validationErrors = validate(values);
+        if (Object.keys(validationErrors).length === 0) {
+            onSubmitHandler(values);
+            setValues(initialValues);
+        } else {
+            setErrors(validationErrors);
+        }
     };
 
     const changeValues = (newValues) => {
-
         // TODO: Validate newValues shape (like initialValues)
-
         setValues(newValues);
     };
 
     return {
         values,
+        errors,
         changeHandler,
         onSubmit,      
         changeValues,  

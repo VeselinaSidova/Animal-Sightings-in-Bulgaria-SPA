@@ -12,12 +12,31 @@ export const AddSightedAnimal = () => {
     const { animalId } = useParams();
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);
-    const { values, changeHandler, onSubmit } = useForm({
-        animalId,
-        location: '',
-        date: '',
-        note: '',
-    }, onSightingAddSubmit);
+    const validateFields = (values) => {
+        const errors = {};
+
+        // Location validation
+        if (!values.location) {
+            errors.location = 'Location is required';
+        }
+
+        // Date validation
+        if (!values.date) {
+            errors.date = 'Date is required';
+        }
+
+        return errors;
+    };
+    const { values, errors, changeHandler, onSubmit } = useForm(
+        {
+            animalId,
+            location: '',
+            date: '',
+            note: '',
+        },
+        onSightingAddSubmit,
+        validateFields
+    );
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -29,9 +48,30 @@ export const AddSightedAnimal = () => {
         <div className={styles['add-sighting']}>
             <label>Add to My Sighted Animals:</label>
             <form className={styles['add-sightings-form']} method="POST" onSubmit={onSubmit}>
-                <input value={values.location} onChange={changeHandler} type="text" name="location" placeholder="Rila" />
-                <input value={values.date} onChange={changeHandler} type="date" name="date" />
-                <textarea maxLength={120} value={values.note} onChange={changeHandler} name="note" placeholder="Add note" ></textarea>
+                <input
+                    value={values.location}
+                    onChange={changeHandler}
+                    type="text"
+                    name="location"
+                    placeholder="Rila"
+                    className={errors.location ? styles['input-error'] : ''}
+                />
+                {errors.location && <span className={styles['error-message']}>{errors.location}</span>}
+                <input
+                    value={values.date}
+                    onChange={changeHandler}
+                    type="date"
+                    name="date"
+                    className={errors.date ? styles['input-error'] : ''}
+                />
+                {errors.date && <span className={styles['error-message']}>{errors.date}</span>}
+                <textarea
+                    maxLength={120}
+                    value={values.note}
+                    onChange={changeHandler}
+                    name="note"
+                    placeholder="Add note"
+                ></textarea>
                 <input className={styles['btn-submit']} type="submit" value="Add" />
             </form>
         </div>

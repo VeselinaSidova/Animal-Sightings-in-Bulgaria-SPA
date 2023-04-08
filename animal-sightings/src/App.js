@@ -19,7 +19,7 @@ import { MyAnimals } from './components/MyAnimals/MyAnimals';
 import { EditAnimal } from './components/EditAnimal/EditAnimal';
 import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal';
 import { MySightings } from './components/MySightings/MySightings';
-import { EditSightedAnimal } from './components/EditSightedAnimal/EditSightedAnimal';
+import { EditSightedAnimal } from './components/EditSighting/EditSightedAnimal';
 
 function App() {
     return (
