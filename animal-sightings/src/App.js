@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import { animalServiceFactory } from './services/animalService';
-import { sighringsServiceFactory } from './services/sightingsService';
 import { AuthProvider } from './contexts/AuthContext';
+import { AnimalProvider } from './contexts/AnimalContext';
+import { SightingProvider } from './contexts/SightingContext';
 
 import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home/Home";
@@ -21,70 +20,30 @@ import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal
 import { MySightings } from './components/MySightings/MySightings';
 
 function App() {
-    const navigate = useNavigate();
-    const [animals, setAnimals] = useState([]);
-    const [sigtings, setSigtings] = useState([]);
-    const animalService = animalServiceFactory(); 
-    const sightingsService = sighringsServiceFactory(); 
-
-    useEffect(() => {
-        animalService.getAll()
-            .then(result => {
-                setAnimals(result);
-            });
-    }, []);
-
-    useEffect(() => {
-        sightingsService.getAll()
-            .then(result => {
-                setSigtings(result);
-            });
-    }, []);
-
-    const onAnimalAddSubmit = async (data) => {
-        const newAnimal = await animalService.create(data);
-
-        setAnimals(state => [...state, newAnimal]);
-
-        navigate('/animals');
-    };
-
-    const onAnimalEditSubmit = async (values) => {
-        const result = await animalService.edit(values._id, values);
-
-        setAnimals(state => state.map(x => x._id === values._id ? result : x));
-
-        navigate(`animals/${values._id}`)
-    }
-
-    const onSightingAddSubmit = async (values) => {
-        const response = await sightingsService.add(values);
-
-        setSigtings(state => [...state, response]);
-     
-        navigate('/my-sightings');
-    };
-
     return (
         <AuthProvider>
-            <div className="App">
-                <Header />
-                <main id="main-content">
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/animals' element={<ListAnimals animals={animals} />} />
-                        <Route path='/animals/:animalId' element={<AnimalDetails />} />
-                        <Route path='/animals/:animalId/edit' element={<EditAnimal onAnimalEditSubmit={onAnimalEditSubmit}/>} />
-                        <Route path='/my-sightings'element={<MySightings />} />
-                        <Route path='/my-animals' element={<MyAnimals animals={animals}/>} />
-                        <Route path='/add-animal' element={<AddAnimal onAnimalAddSubmit={onAnimalAddSubmit} />} />
-                        <Route path='/add-sighting/:animalId' element={<AddSightedAnimal onSightingAddSubmit={onSightingAddSubmit}/>} />
-                        <Route path='/register' element={<Register />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/logout' element={<Logout />} />
-                    </Routes>
-                </main>
-            </div>
+            <AnimalProvider>
+                <SightingProvider>
+                    <div className="App">
+                        <Header />
+                        <main id="main-content">
+                            <Routes>
+                                <Route path='/' element={<Home />} />
+                                <Route path='/animals' element={<ListAnimals />} />
+                                <Route path='/animals/:animalId' element={<AnimalDetails />} />
+                                <Route path='/animals/:animalId/edit' element={<EditAnimal />} />
+                                <Route path='/my-sightings' element={<MySightings />} />
+                                <Route path='/my-animals' element={<MyAnimals />} />
+                                <Route path='/add-animal' element={<AddAnimal />} />
+                                <Route path='/add-sighting/:animalId' element={<AddSightedAnimal />} />
+                                <Route path='/register' element={<Register />} />
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/logout' element={<Logout />} />
+                            </Routes>
+                        </main>
+                    </div>
+                </SightingProvider>
+            </AnimalProvider>
         </AuthProvider>
     );
 }

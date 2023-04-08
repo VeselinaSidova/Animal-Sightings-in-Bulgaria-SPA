@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { animalServiceFactory } from '../../services/animalService';
 import { useService } from '../../hooks/useService';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { useAnimalContext } from '../../contexts/AnimalContext';
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -13,6 +14,7 @@ import styles from './AnimalDetails.module.css';
 export const AnimalDetails = () => {
     const { animalId } = useParams();
     const { userId, isAuthenticated } = useAuthContext();
+    const { deleteAnimal } = useAnimalContext();
     const [animal, setAnimal] = useState({});
     const animalService = useService(animalServiceFactory);
     const navigate = useNavigate();
@@ -26,6 +28,9 @@ export const AnimalDetails = () => {
 
     const onDeleteClick = async () => {
         await animalService.delete(animal._id);
+
+        deleteAnimal(animal._id);
+
         navigate(-1);
     };
 

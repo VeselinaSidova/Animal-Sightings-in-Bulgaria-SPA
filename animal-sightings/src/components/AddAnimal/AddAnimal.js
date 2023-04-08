@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useAnimalContext } from '../../contexts/AnimalContext';
 
 import styles from './AddAnimal.module.css';
 
-export const AddAnimal = ({
-    onAnimalAddSubmit,
-}) => {
+export const AddAnimal = () => {
+    const {onAnimalAddSubmit} = useAnimalContext();
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({

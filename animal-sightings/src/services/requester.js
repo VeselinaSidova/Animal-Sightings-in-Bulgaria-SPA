@@ -29,7 +29,7 @@ const requester = async (method, token, url, data) => {
     const result = await response.json();
 
     if (!response.ok) {
-        throw result;
+        throw new Error(`HTTP error: ${response.status}`);
     }
 
     return result;

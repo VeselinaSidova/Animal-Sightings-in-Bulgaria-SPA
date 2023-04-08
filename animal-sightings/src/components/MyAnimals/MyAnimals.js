@@ -3,12 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { AnimalItem } from '../ListAnimals/AnimalItem/AnimalItem';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useAnimalContext } from "../../contexts/AnimalContext";
 
 import styles from './MyAnimals.module.css';
 
-export const MyAnimals = ({
-    animals,
-}) => {
+export const MyAnimals = () => {
+    const { animals } = useAnimalContext();
     const { userId } = useContext(AuthContext);
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);

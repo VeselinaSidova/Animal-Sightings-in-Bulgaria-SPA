@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useSightingContext } from "../../contexts/SightingContext";
 
 import styles from './AddSightedAnimal.module.css';
 
-export const AddSightedAnimal = ({
-    onSightingAddSubmit,
-}) => {
+export const AddSightedAnimal = () => {
+    const { onSightingAddSubmit } = useSightingContext();
     const { animalId } = useParams();
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);

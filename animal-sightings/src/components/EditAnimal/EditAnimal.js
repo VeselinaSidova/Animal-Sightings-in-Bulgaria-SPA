@@ -4,13 +4,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useService } from "../../hooks/useService";
 import { AuthContext } from '../../contexts/AuthContext';
+import { useAnimalContext } from "../../contexts/AnimalContext";
 import { animalServiceFactory } from "../../services/animalService";
 
 import styles from './EditAnimal.module.css';
 
-export const EditAnimal = ({
-    onAnimalEditSubmit,
-}) => {
+export const EditAnimal = () => {
+    const { onAnimalEditSubmit } = useAnimalContext();
     const { animalId } = useParams();
     const navigate = useNavigate();
     const { isAuthenticated } = useContext(AuthContext);

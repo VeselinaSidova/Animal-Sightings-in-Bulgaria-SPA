@@ -1,10 +1,11 @@
+import { useAnimalContext } from "../../contexts/AnimalContext";
 import { AnimalItem } from './AnimalItem/AnimalItem';
 
 import styles from './ListAnimals.module.css';
 
-export const ListAnimals = ({
-    animals,
-}) => {
+export const ListAnimals = () => {
+    const { animals } = useAnimalContext();
+
     return (
         <div className={styles['catalogue-page']}>
             <h1 className={styles['animals-title']}>Animals in Bulgaria</h1>
