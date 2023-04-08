@@ -20,6 +20,7 @@ import { EditAnimal } from './components/EditAnimal/EditAnimal';
 import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal';
 import { MySightings } from './components/MySightings/MySightings';
 import { EditSightedAnimal } from './components/EditSighting/EditSightedAnimal';
+import { Profile } from './components/Profile/Profile';
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                                 <Route path='/add-sighting/:animalId' element={<AddSightedAnimal />} />
                                 <Route path='/register' element={<Register />} />
                                 <Route path='/login' element={<Login />} />
+                                <Route path='/profile' element={<Profile />} />
                                 <Route path='/logout' element={<Logout />} />
                             </Routes>
                         </main>
