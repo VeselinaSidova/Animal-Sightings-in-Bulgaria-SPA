@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 export const Home = () => {
     return (
-        <div>
+        <div className={styles['home-page']}>
             <header className={styles['home-header']}>
                 <h1>Animal Sighthings Bulgaria</h1>
                 <h2>Your Ultimate Guide to tracking and learning about Bulgarian fauna!</h2>

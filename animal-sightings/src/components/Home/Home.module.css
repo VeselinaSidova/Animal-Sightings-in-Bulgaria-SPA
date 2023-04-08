@@ -1,3 +1,7 @@
+.home-page{
+  height: 80vh;
+}
+
 .home-header {
     background-color: #9ED0A4;
     color: black;
@@ -7,7 +11,7 @@
   
   .home-header h1 {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: 19px;
   }
   
   .home-header h2 {
@@ -24,11 +28,11 @@
   }
 
   .carousel-section {
-    height: 80vh;
+    height: 78vh;
 }
 
 img {
-    height: 80vh;
+    height: 78vh;
     object-fit: cover;
     overflow: hidden;
 }
