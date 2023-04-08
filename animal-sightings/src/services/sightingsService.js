@@ -6,19 +6,36 @@ export const sightingsServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async (userId) => {
-        const query = encodeURIComponent(`_ownerId="${userId}"`);
-
-        const result = await request.get(`${baseUrl}?where=${query}`);
-        const sightings = Object.values(result);
-
-        return sightings;
-    };
-
-    const getOne = async (sightingId) => {
-        const result = await request.get(`${baseUrl}/${sightingId}`);
-    
-        return result;
-    };
+        try {
+          const query = encodeURIComponent(`_ownerId="${userId}"`);
+      
+          const result = await request.get(`${baseUrl}?where=${query}`);
+          const sightings = Object.values(result);
+      
+          return sightings;
+        } catch (error) {
+          if (error.message.includes('HTTP 404')) {            
+            console.error('Sightings not found');
+          } else {
+            console.error(error);
+          }
+          return [];
+        }
+      };
+      
+      const getOne = async (sightingId) => {
+        try {
+          const result = await request.get(`${baseUrl}/${sightingId}`);
+          return result;
+        } catch (error) {
+          if (error.message.includes('HTTP 404')) {
+            console.error('Sighting not found');
+          } else {
+            console.error(error);
+          }
+          return null;
+        }
+      };
 
     const add = async (sightingData) => {
         const result = await request.post(baseUrl, sightingData);

@@ -26,6 +26,10 @@ const requester = async (method, token, url, data) => {
         return {};
     }
 
+    if (response.status === 404) {
+        throw new Error('Resource not found (HTTP 404)');
+      }
+
     const result = await response.json();
 
     if (!response.ok) {

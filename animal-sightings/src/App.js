@@ -21,6 +21,7 @@ import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal
 import { MySightings } from './components/MySightings/MySightings';
 import { EditSightedAnimal } from './components/EditSighting/EditSightedAnimal';
 import { Profile } from './components/Profile/Profile';
+import { NotFound } from './components/NotFound/NotFound';
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                                 <Route path='/login' element={<Login />} />
                                 <Route path='/profile' element={<Profile />} />
                                 <Route path='/logout' element={<Logout />} />
+                                <Route path="*" element={<NotFound />} />
                             </Routes>
                         </main>
                         <Footer />

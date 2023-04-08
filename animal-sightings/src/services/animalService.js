@@ -6,17 +6,33 @@ export const animalServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async () => {
-        const result = await request.get(baseUrl);
-        const animals = Object.values(result);
-    
-        return animals;
-    };
+        try {
+          const result = await request.get(baseUrl);
+          const animals = Object.values(result);
+          return animals;
+        } catch (error) {
+          if (error.message.includes('HTTP 404')) {
+            console.error('Animals not found');
+          } else {
+            console.error(error);
+          }
+          return [];
+        }
+      };
     
     const getOne = async (animalId) => {
-        const result = await request.get(`${baseUrl}/${animalId}`);
-    
-        return result;
-    };
+        try {
+          const result = await request.get(`${baseUrl}/${animalId}`);
+          return result;
+        } catch (error) {
+          if (error.message.includes('HTTP 404')) {
+            console.error('Animal not found');
+          } else {
+            console.error(error);
+          }
+          return null; 
+        }
+      };
     
     const create = async (animalData) => {
         const result = await request.post(baseUrl, animalData);
