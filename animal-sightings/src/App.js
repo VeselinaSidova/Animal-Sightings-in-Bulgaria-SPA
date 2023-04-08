@@ -23,6 +23,7 @@ import { MySightings } from './components/MySightings/MySightings';
 function App() {
     const navigate = useNavigate();
     const [animals, setAnimals] = useState([]);
+    const [sigtings, setSigtings] = useState([]);
     const animalService = animalServiceFactory(); 
     const sightingsService = sighringsServiceFactory(); 
 
@@ -30,6 +31,13 @@ function App() {
         animalService.getAll()
             .then(result => {
                 setAnimals(result);
+            });
+    }, []);
+
+    useEffect(() => {
+        sightingsService.getAll()
+            .then(result => {
+                setSigtings(result);
             });
     }, []);
 
@@ -52,8 +60,8 @@ function App() {
     const onSightingAddSubmit = async (values) => {
         const response = await sightingsService.add(values);
 
-        setAnimals(state => [...state, response]);
-
+        setSigtings(state => [...state, response]);
+     
         navigate('/my-sightings');
     };
 

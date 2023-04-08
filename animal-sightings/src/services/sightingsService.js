@@ -18,6 +18,8 @@ export const sighringsServiceFactory = (token) => {
         const result = await request.post(baseUrl, sightingData);
         return result;
     };
+
+    // TODO add edit and delete
     
     return {
         getAll,

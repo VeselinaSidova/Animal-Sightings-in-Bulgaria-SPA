@@ -21,7 +21,7 @@ export const AuthProvider = ({
             navigate('/animals');
 
         } catch(error) {
-            console.log('There is a problem'); //TODO - notification!
+            console.log('There is a problem'); // TODO - notification!
         }
     };    
 
