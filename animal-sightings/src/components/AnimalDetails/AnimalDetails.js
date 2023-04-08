@@ -1,19 +1,18 @@
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+
+import { animalServiceFactory } from '../../services/animalService';
+import { useService } from '../../hooks/useService';
+import { useAuthContext } from '../../contexts/AuthContext';
+
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import CloseButton from 'react-bootstrap/CloseButton';
 import styles from './AnimalDetails.module.css';
 
-import { Link } from 'react-router-dom';
-import { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
-import { animalServiceFactory } from '../../services/animalService';
-import { useService } from '../../hooks/useService';
-import { AuthContext } from '../../contexts/AuthContext';
-
 export const AnimalDetails = () => {
-    const { userId, isAuthenticated } = useContext(AuthContext);
     const { animalId } = useParams();
+    const { userId, isAuthenticated } = useAuthContext();
     const [animal, setAnimal] = useState({});
     const animalService = useService(animalServiceFactory);
     const navigate = useNavigate();
@@ -23,7 +22,7 @@ export const AnimalDetails = () => {
             .then(result => {
                 setAnimal(result);
             })
-    }, [animalId, animalService]);
+    }, [animalId]);
 
     const onDeleteClick = async () => {
         await animalService.delete(animal._id);
@@ -52,9 +51,9 @@ export const AnimalDetails = () => {
                     </ListGroup>
                     <div className={styles['buttons-section']}>
                         {isAuthenticated && (
-                            <Link to={`/animals/my-sightings`} className={styles['sightings-button']}>Add to My Sightings</Link>
+                            <Link to={`/add-sighting/${animal._id}`} className={styles['sightings-button']} >Add to My Sightings</Link>
                         )}
-                        <Link to={`/animals/sightings`} className={styles['sightings-button']}>View on Map</Link>
+                        {/* <Link to={`/animals/sightings`} className={styles['sightings-button']}>View on Map</Link> */}
                         {animal._ownerId === userId &&
                             <div className={styles['owner-buttons-section']}>
                                 <Link to={`/animals/${animal._id}/edit`} className={styles['sightings-button']}>Edit</Link>

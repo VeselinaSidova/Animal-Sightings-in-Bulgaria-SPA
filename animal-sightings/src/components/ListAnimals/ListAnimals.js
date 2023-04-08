@@ -10,7 +10,7 @@ export const ListAnimals = ({
         <section className={styles['animal-catalogue']}>
             {animals.map((animal) => <AnimalItem key={animal._id} {...animal}/>)}
             {animals.length === 0 && (
-                <h3 className={styles['no-articles']}>No animals added yet</h3>
+                <h3 className={styles['no-animals']}>No animals added yet</h3>
             )}     
         </section>
         </div>

@@ -16,7 +16,7 @@ export const Header = () => {
                 </div>
                 <ul className={styles['navbar-list']}>
                     <li><Link to={'/animals'} className={styles['navbar-link']} >Animals in Bulgaria</Link></li>
-                    <li><Link to={'/sightings'} className={styles['navbar-link']} >Animal Sightings</Link></li>
+                    {/* <li><Link to={'/sightings'} className={styles['navbar-link']} >Animal Sightings</Link></li> */}
                     {isAuthenticated && (
                         <div className={styles['auth-section']}>
                             <li><Link to={'/my-sightings'} className={styles['navbar-link']} >My Animal Sightings</Link></li>

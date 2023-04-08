@@ -31,7 +31,7 @@ export const EditAnimal = ({
             .then(result => {
                 changeValues(result);
             });
-    }, [animalId, animalSevice, changeValues]);
+    }, [animalId]);
 
     return (
         <section className={styles['edit-animal-section']} >
@@ -90,4 +90,4 @@ export const EditAnimal = ({
             </form>
         </section>
     );
-}
+};

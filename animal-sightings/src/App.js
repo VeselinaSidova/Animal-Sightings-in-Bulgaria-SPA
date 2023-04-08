@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { animalServiceFactory } from './services/animalService';
+import * as sightingsService from './services/sightingsService';
 import { AuthProvider } from './contexts/AuthContext';
 
 import { Header } from "./components/Header/Header";
@@ -16,6 +17,8 @@ import { Register } from './components/Register/Register';
 import { Logout } from './components/Logout/Logout';
 import { MyAnimals } from './components/MyAnimals/MyAnimals';
 import { EditAnimal } from './components/EditAnimal/EditAnimal';
+import { AddSightedAnimal } from './components/AddSightedAnimal/AddSightedAnimal';
+import { MySightings } from './components/MySightings/MySightings';
 
 function App() {
     const navigate = useNavigate();
@@ -27,7 +30,7 @@ function App() {
             .then(result => {
                 setAnimals(result);
             });
-    }, [animalService]);
+    }, []);
 
     const onAnimalAddSubmit = async (data) => {
         const newAnimal = await animalService.create(data);
@@ -45,6 +48,14 @@ function App() {
         navigate(`animals/${values._id}`)
     }
 
+    const onSightingAddSubmit = async (values) => {
+        const response = await sightingsService.add(values);
+
+        setAnimals(state => [...state, response]);
+
+        navigate('/my-sightings');
+    };
+
     return (
         <AuthProvider>
             <div className="App">
@@ -55,8 +66,10 @@ function App() {
                         <Route path='/animals' element={<ListAnimals animals={animals} />} />
                         <Route path='/animals/:animalId' element={<AnimalDetails />} />
                         <Route path='/animals/:animalId/edit' element={<EditAnimal onAnimalEditSubmit={onAnimalEditSubmit}/>} />
+                        <Route path='/my-sightings'element={<MySightings />} />
                         <Route path='/my-animals' element={<MyAnimals animals={animals}/>} />
                         <Route path='/add-animal' element={<AddAnimal onAnimalAddSubmit={onAnimalAddSubmit} />} />
+                        <Route path='/add-sighting/:animalId' element={<AddSightedAnimal onSightingAddSubmit={onSightingAddSubmit}/>} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/logout' element={<Logout />} />

@@ -1,5 +1,12 @@
 .animal-card {
-    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    width: 30vw;
+}
+
+.image-section {
+    width: 300px;
+    height: 250px;
 }
 
 .card-image {
@@ -8,17 +15,13 @@
 }
 
 .card-title {
-    text-align: center;
     font-weight: 600;
 }
 
-.animal-class {
-    text-transform: capitalize;
-}
-
 .button-section {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
 
 .details-button {
