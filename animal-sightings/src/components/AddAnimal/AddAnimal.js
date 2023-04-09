@@ -65,7 +65,7 @@ export const AddAnimal = () => {
         habitat: '',
         habitatBg: '',
         locationBg: '',
-        foodPreference: 'carnivores',
+        foodPreference: 'Carnivore',
         mass: '',
         imageUrl: '',
         description: '',
@@ -121,7 +121,7 @@ export const AddAnimal = () => {
                 <div className={styles['food-preference']}>
                     <label>Food preference:</label>
                     <div className={styles['food-preference-options']}>
-                        <label htmlFor="carnivore" checked={true}>Carnivore</label>
+                        <label htmlFor="carnivore">Carnivore</label>
                         <input type="radio" name="foodPreference" id="carnivore" value="Carnivore" onChange={changeHandler} checked={values.foodPreference === 'Carnivore'} />
                         <label htmlFor="herbivore">Herbivore</label>
                         <input type="radio" name="foodPreference" id="herbivore" value="Herbivore" onChange={changeHandler} checked={values.foodPreference === 'Herbivore'} />
